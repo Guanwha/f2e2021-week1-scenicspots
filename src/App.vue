@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header class="z-10"/>  <!-- must be above frosted-glass -->
+    <Header class="z-10" :menu-item-type='menuItemType'/>  <!-- must be above frosted-glass -->
     <div class="absolute top-20 bottom-0 w-full overflow-y-auto">
       <router-view/>
       <div :class="[ (isShowFrostedGlass) ? 'frosted-glass': '' ]"></div>
@@ -19,6 +19,14 @@ export default {
   components: {
     Header,
     Footer,
+  },
+  data() {
+    return {
+      menuItemType: this.$route.meta.menuItemType,
+    };
+  },
+  updated() {
+    this.menuItemType = this.$route.meta.menuItemType;
   },
   computed: {
     ...mapGetters(['isShowFrostedGlass']),

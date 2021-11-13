@@ -4,12 +4,12 @@
     <div class="hidden md:block">
       <div class="flex-rsbc px-4 border-b">
         <!-- header logo -->
-        <img class="" src="@/assets/breakfast/Logo-desktop.svg" alt="">
+        <img class="cursor-pointer" src="@/assets/breakfast/Logo-desktop.svg" alt="Logo" @click="gotoPage(menuItemTypeEnum.HOME)">
         <!-- right: desktop menu -->
         <ul class="flex">
-          <li :class="classItemDesktop()" @click="gotoPage()">探索景點</li>
-          <li :class="classItemDesktop()" @click="gotoPage()">節慶活動</li>
-          <li :class="classItemDesktop()" @click="gotoPage()">品嚐美食</li>
+          <li :class="classItemDesktop()" @click="gotoPage(menuItemTypeEnum.SEARCH_ATTRACTIONS)">探索景點</li>
+          <li :class="classItemDesktop()" @click="gotoPage(menuItemTypeEnum.SEARCH_ACTIVITIES)">節慶活動</li>
+          <li :class="classItemDesktop()" @click="gotoPage(menuItemTypeEnum.SEARCH_EATS)">品嚐美食</li>
         </ul>
       </div>
     </div>
@@ -33,13 +33,13 @@
               </div>
               <!-- pop menu items -->
               <ul class="flex-ccc">
-                <li :class="classItemBgText()" @click="gotoPage()">首頁</li>
+                <li :class="classItemBgText()" @click="gotoPage(menuItemTypeEnum.HOME)">首頁</li>
                 <hr>
-                <li :class="classItemBgText()" @click="gotoPage()">探索景點</li>
+                <li :class="classItemBgText()" @click="gotoPage(menuItemTypeEnum.SEARCH_ATTRACTIONS)">探索景點</li>
                 <hr>
-                <li :class="classItemBgText()" @click="gotoPage()">節慶活動</li>
+                <li :class="classItemBgText()" @click="gotoPage(menuItemTypeEnum.SEARCH_ACTIVITIES)">節慶活動</li>
                 <hr>
-                <li :class="classItemBgText()" @click="gotoPage()">品嚐美食</li>
+                <li :class="classItemBgText()" @click="gotoPage(menuItemTypeEnum.SEARCH_EATS)">品嚐美食</li>
               </ul>
               <div class="h-4"></div>
             </div>
@@ -52,15 +52,20 @@
 
 <script>
 import { mapActions } from 'vuex';
+import { MenuItemTypeEnum } from '@/utils/enums';
 
 export default {
   name: 'Header',
   components: {
   },
   props: {
+    menuItemType: {
+      default: MenuItemTypeEnum.HOME,
+    },
   },
   data() {
     return {
+      menuItemTypeEnum: MenuItemTypeEnum,
       showPopMenu: false,
     };
   },
@@ -77,7 +82,20 @@ export default {
     /**
      * router
      */
-    gotoPage() {},
+    gotoPage(targetMenuItemType) {
+      // check if the same page
+      if (targetMenuItemType === this.menuItemType) {
+        return;
+      }
+
+      switch (targetMenuItemType) {
+        case MenuItemTypeEnum.HOME: this.$router.push({ path: '/' }); break;
+        case MenuItemTypeEnum.SEARCH_ATTRACTIONS: this.$router.push({ path: '/search/attractions' }); break;
+        case MenuItemTypeEnum.SEARCH_ACTIVITIES: this.$router.push({ path: '/search/activities' }); break;
+        case MenuItemTypeEnum.SEARCH_EATS: this.$router.push({ path: '/search/eats' }); break;
+        default: break;
+      }
+    },
 
     /**
      * classes
