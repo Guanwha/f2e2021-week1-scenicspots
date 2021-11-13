@@ -1,12 +1,23 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <Header class="z-10"/>  <!-- must be above frosted-glass -->
+    <div class="relative">
+      <router-view/>
+      <div class="frosted-glass"></div>
     </div>
-    <router-view/>
   </div>
 </template>
+
+<script>
+import Header from '@/components/Header.vue';
+
+export default {
+  name: 'App',
+  components: {
+    Header,
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -28,5 +39,14 @@
       color: #42b983;
     }
   }
+}
+
+.frosted-glass {
+  @apply w-full;
+  @apply h-full;
+  @apply absolute;
+  @apply top-0;
+  @apply left-0;
+  backdrop-filter: blur(2px);
 }
 </style>

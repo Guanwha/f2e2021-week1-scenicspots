@@ -329,6 +329,28 @@
     max-height: 40%;
   }
 
+  // position
+  .absolute-center {
+    @apply absolute;
+    @apply top-1/2;
+    @apply left-1/2;
+    @apply transform;
+    @apply -translate-x-1/2;
+    @apply -translate-y-1/2;
+  }
+  .absolute-hcenter {
+    @apply absolute;
+    @apply left-1/2;
+    @apply transform;
+    @apply -translate-x-1/2;
+  }
+  .absolute-vcenter {
+    @apply absolute;
+    @apply top-1/2;
+    @apply transform;
+    @apply -translate-y-1/2;
+  }
+
   // for <a>
   a.disabled {
     // pointer-events: none;
