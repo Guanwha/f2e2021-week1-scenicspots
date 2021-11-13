@@ -51,7 +51,7 @@ export default {
 .frosted-glass {
   @apply w-full;
   @apply h-full;
-  @apply absolute;
+  @apply fixed;
   @apply top-0;
   @apply left-0;
   backdrop-filter: blur(2px);

@@ -1,22 +1,22 @@
 <template>
-  <div class="container mx-auto flex-ccc">
+  <div class="container mx-auto flex-ccc px-2 md:px-0">
     <!-- search area -->
-    <div class="w-full flex-rsbc">
-      <div class="flex-ccl pl-24 py-20">
-        <div class="text-5xl text-gray-500 leading-normal">探索<span class="underline">台灣之美</span></div>
-        <div class="text-5xl text-gray-500 leading-normal">讓我們更親近這片土地</div>
-        <div class="pt-4 flex-rlc">
+    <div class="w-full flex-ccc md:flex-rsbc">
+      <div class="flex-ccc md:flex-ccl md:pl-24 py-4 md:py-20">
+        <div class="text-2xl md:text-5xl text-gray-500 leading-normal">探索<span class="underline">台灣之美</span></div>
+        <div class="text-2xl md:text-5xl text-gray-500 leading-normal">讓我們更親近這片土地</div>
+        <div class="pt-2 md:pt-4 flex-rlc">
           <img src="@/assets/breakfast/spot24_Y.svg" alt="">
-          <div class="ml-1 font-bold text-xl text-gray-400">台灣旅遊景點導覽 Taiwan Travel Guide</div>
+          <div class="ml-1 font-bold text-sm md:text-xl text-gray-400">台灣旅遊景點導覽 Taiwan Travel Guide</div>
         </div>
       </div>
-      <div class="flex-ccc">
-        <Dropdown class="w-96"
+      <div class="w-full md:w-auto flex-ccc">
+        <Dropdown class="w-full md:w-96"
                   classPadding="px-4 py-2 md:py-4"
                   :classBorder="classDDBorder"
                   :classBgTextColor="classDDBgTextColor"
                   v-model.number='selectedSearchTypeID' :types='searchTypesText'/>
-        <div class="w-96 mt-2">
+        <div class="w-full md:w-96 mt-2">
           <input type="text" class="w-full px-4 py-2 md:py-4 border-main rounded focus:outline-none focus:border-main-500" placeholder="您想去哪裡？請輸入關鍵字" v-model="search">
           <button type="button" class="w-full mt-2 py-2 md:py-4 border-main rounded btn btn-main flex-rcc">
             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFF">
@@ -29,21 +29,21 @@
       </div>
     </div>
     <!-- hero -->
-    <div class="w-full h-96 rounded-lg border-main-500 bg-main-500 bg-opacity-20 flex-ccc">Coming Soon...</div>
+    <div class="w-full h-48 md:h-96 mt-9 md:mt-0 rounded-lg border-main-500 bg-main-500 bg-opacity-20 flex-ccc">Coming Soon...</div>
     <!-- 近期活動 -->
     <div class="w-full mt-9 flex-ctl">
-      <div class="text-4xl text-gray-500 leading-normal">近期活動</div>
-      <div class="w-full h-80 rounded-lg border-main-500 bg-main-500 bg-opacity-20 flex-ccc">Coming Soon...</div>
+      <div class="text-2xl md:text-4xl text-gray-500 leading-normal">近期活動</div>
+      <div class="w-full h-40 md:h-80 rounded-lg border-main-500 bg-main-500 bg-opacity-20 flex-ccc">Coming Soon...</div>
     </div>
     <!-- 熱門打卡景點 -->
     <div class="w-full mt-9 flex-ctl">
-      <div class="text-4xl text-gray-500 leading-normal">熱門打卡景點</div>
-      <div class="w-full h-80 rounded-lg border-main-500 bg-main-500 bg-opacity-20 flex-ccc">Coming Soon...</div>
+      <div class="text-2xl md:text-4xl text-gray-500 leading-normal">熱門打卡景點</div>
+      <div class="w-full h-40 md:h-80 rounded-lg border-main-500 bg-main-500 bg-opacity-20 flex-ccc">Coming Soon...</div>
     </div>
     <!-- 一再回訪的美食 -->
     <div class="w-full mt-9 flex-ctl">
-      <div class="text-4xl text-gray-500 leading-normal">一再回訪的美食</div>
-      <div class="w-full h-80 rounded-lg border-main-500 bg-main-500 bg-opacity-20 flex-ccc">Coming Soon...</div>
+      <div class="text-2xl md:text-4xl text-gray-500 leading-normal">一再回訪的美食</div>
+      <div class="w-full h-40 md:h-80 rounded-lg border-main-500 bg-main-500 bg-opacity-20 flex-ccc">Coming Soon...</div>
     </div>
   </div>
 </template>
