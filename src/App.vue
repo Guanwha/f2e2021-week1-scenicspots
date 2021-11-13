@@ -3,18 +3,22 @@
     <Header class="z-10"/>  <!-- must be above frosted-glass -->
     <div class="relative">
       <router-view/>
-      <div class="frosted-glass"></div>
+      <div :class="[ (isShowFrostedGlass) ? 'frosted-glass': '' ]"></div>
     </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 import Header from '@/components/Header.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
+  },
+  computed: {
+    ...mapGetters(['isShowFrostedGlass']),
   },
 };
 </script>

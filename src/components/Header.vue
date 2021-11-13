@@ -51,7 +51,7 @@
 </template>
 
 <script>
-// import { mapActions, mapGetters } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'Header',
@@ -67,9 +67,11 @@ export default {
   methods: {
     openPopMenu() {
       this.showPopMenu = true;
+      this.showFrostedGlass(true);
     },
     closePopMenu() {
       this.showPopMenu = false;
+      this.showFrostedGlass(false);
     },
 
     /**
@@ -103,6 +105,8 @@ export default {
 
       return classStr;
     },
+
+    ...mapActions(['showFrostedGlass']),
   },
   computed: {
   },
