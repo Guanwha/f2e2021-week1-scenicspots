@@ -46,7 +46,7 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "max-len": ["error", { "code": 255 }],
+      "max-len": ["error", { "code": 511 }],
 			"brace-style": ["error", "stroustrup"],
       "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
       "no-multi-spaces": ["error", { "ignoreEOLComments": true }],

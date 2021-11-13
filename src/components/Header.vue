@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full sticky top-0">
+  <div class="w-full fixed top-0">
     <!-- desktop version -->
     <div class="hidden md:block">
       <div class="flex-rsbc px-4 border-b">
@@ -86,11 +86,11 @@ export default {
       return 'bg-white';
     },
     classItemDesktop() {
-      return 'p-6 text-main cursor-pointer';
+      return 'p-6 text-main-500 cursor-pointer';
     },
     // classItemBgText(navbarItemType) {
     classItemBgText() {
-      const classStr = 'py-6 px-20 text-main cursor-pointer';
+      const classStr = 'py-6 px-20 text-main-500 cursor-pointer';
 
       // hover & selected
       // if (this.curOrgID > 0) {  

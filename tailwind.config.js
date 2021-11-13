@@ -9,8 +9,9 @@ module.exports = {
       sm: '640px',
       md: '768px',
       lg: '1024px',
-      xl: '1280px',
-      '2xl': '1536px',
+      xl: '1200px',
+      // xl: '1280px',
+      // '2xl': '1536px',
     },
     colors: {
       transparent: 'transparent',
@@ -27,8 +28,8 @@ module.exports = {
       purple: colors.violet,
       pink: colors.pink,
 
-      main: '#65895F',
-      secondary: '#C1CCBE',
+      'main-500': '#65895F',
+      'main-400': '#7F977B',
     },
     spacing: {
       px: '1px',

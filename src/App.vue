@@ -1,9 +1,10 @@
 <template>
   <div id="app">
     <Header class="z-10"/>  <!-- must be above frosted-glass -->
-    <div class="relative">
+    <div class="absolute top-20 bottom-0 w-full overflow-y-auto">
       <router-view/>
       <div :class="[ (isShowFrostedGlass) ? 'frosted-glass': '' ]"></div>
+      <Footer class="mt-16"/>  <!-- must be above frosted-glass -->
     </div>
   </div>
 </template>
@@ -11,11 +12,13 @@
 <script>
 import { mapGetters } from 'vuex';
 import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
 
 export default {
   name: 'App',
   components: {
     Header,
+    Footer,
   },
   computed: {
     ...mapGetters(['isShowFrostedGlass']),
