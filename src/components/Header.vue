@@ -7,7 +7,7 @@
         <img class="cursor-pointer" src="@/assets/breakfast/Logo-desktop.svg" alt="Logo" @click="gotoPage(menuItemTypeEnum.HOME)">
         <!-- right: desktop menu -->
         <ul class="flex">
-          <li :class="classItemDesktop()" @click="gotoPage(menuItemTypeEnum.SEARCH_ATTRACTIONS)">探索景點</li>
+          <li :class="classItemDesktop()" @click="gotoPage(menuItemTypeEnum.SEARCH_SCENICSPOTS)">探索景點</li>
           <li :class="classItemDesktop()" @click="gotoPage(menuItemTypeEnum.SEARCH_ACTIVITIES)">節慶活動</li>
           <li :class="classItemDesktop()" @click="gotoPage(menuItemTypeEnum.SEARCH_EATS)">品嚐美食</li>
         </ul>
@@ -35,7 +35,7 @@
               <ul class="flex-ccc">
                 <li :class="classItemBgText()" @click="gotoPage(menuItemTypeEnum.HOME)">首頁</li>
                 <hr>
-                <li :class="classItemBgText()" @click="gotoPage(menuItemTypeEnum.SEARCH_ATTRACTIONS)">探索景點</li>
+                <li :class="classItemBgText()" @click="gotoPage(menuItemTypeEnum.SEARCH_SCENICSPOTS)">探索景點</li>
                 <hr>
                 <li :class="classItemBgText()" @click="gotoPage(menuItemTypeEnum.SEARCH_ACTIVITIES)">節慶活動</li>
                 <hr>
@@ -90,7 +90,7 @@ export default {
 
       switch (targetMenuItemType) {
         case MenuItemTypeEnum.HOME: this.$router.push({ path: '/' }); break;
-        case MenuItemTypeEnum.SEARCH_ATTRACTIONS: this.$router.push({ path: '/search/attractions' }); break;
+        case MenuItemTypeEnum.SEARCH_SCENICSPOTS: this.$router.push({ path: '/search/scenicspots' }); break;
         case MenuItemTypeEnum.SEARCH_ACTIVITIES: this.$router.push({ path: '/search/activities' }); break;
         case MenuItemTypeEnum.SEARCH_EATS: this.$router.push({ path: '/search/eats' }); break;
         default: break;

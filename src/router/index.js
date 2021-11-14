@@ -15,14 +15,14 @@ const routes = [
     },
   },
   {
-    path: '/search/attractions',
-    name: 'searchAttractions',
+    path: '/search/scenicspots',
+    name: 'searchScenicSpots',
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "searchAttractions" */ '../views/SearchAttractions.vue'),
+    component: () => import(/* webpackChunkName: "searchScenicSpots" */ '../views/SearchScenicSpots.vue'),
     meta: {
-      menuItemType: MenuItemTypeEnum.SEARCH_ATTRACTIONS,
+      menuItemType: MenuItemTypeEnum.SEARCH_SCENICSPOTS,
     },
   },
 ];

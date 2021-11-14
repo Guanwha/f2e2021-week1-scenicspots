@@ -42,7 +42,7 @@ import { SearchTypesText } from '@/utils/enums';
 import { log } from '@/utils/message';
 
 export default {
-  name: 'SearchAttractions',
+  name: 'SearchScenicSpots',
   components: {
     Dropdown,
   },

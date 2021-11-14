@@ -4,7 +4,7 @@
 export const MenuItemTypeEnum = {
   NONE: 0,
   HOME: 1,
-  SEARCH_ATTRACTIONS: 10,
+  SEARCH_SCENICSPOTS: 10,
   SEARCH_ACTIVITIES: 20,
   SEARCH_EATS: 30,
 };
