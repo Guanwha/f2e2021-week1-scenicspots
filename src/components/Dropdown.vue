@@ -54,7 +54,7 @@ export default {
     event: 'change',
   },
   props: {
-    curTypeID: Number,
+    curTypeID: [Number, String],
     types: [Object, Array],
     classPadding: {
       type: String,

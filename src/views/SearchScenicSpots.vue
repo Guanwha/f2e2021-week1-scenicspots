@@ -6,7 +6,7 @@
                 classPadding="px-4 py-2 md:py-4"
                 :classBorder="classDDBorder"
                 :classBgTextColor="classDDBgTextColor"
-                v-model.number='selectedCountyID' :types='searchTypesText'/>
+                v-model.number='selectedCountyID' :types='counties'/>
       <input type="text" class="col-span-4 md:col-span-2 px-4 py-2 md:py-4 border-main rounded focus:outline-none focus:border-main-500" placeholder="您想去哪裡？請輸入關鍵字" v-model="search">
       <button type="button" class="col-span-4 md:col-span-1 py-2 md:py-4 border-main rounded btn btn-main focus:outline-none focus:border-main-500 flex-rcc"
               @click="refreshScenicSpotList">
@@ -29,8 +29,34 @@
       </div>
     </template>
     <template v-else>
-      <!-- [TODO] -->
-      <div>{{ scenicSpotList }}</div>
+      <div class="mt-2 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="col-span-1 rounded-b hover:-translate-y-2 hover:shadow-lg transform transition duration-500 ease-in-out cursor-pointer"
+             v-for="scenicSpot in scenicSpotList" :key="scenicSpot.ID">
+          <div class="w-full h-48" v-if="scenicSpot.Picture">
+            <!-- <img  :src="scenicSpot.Picture.PictureUrl1" alt=""> -->
+            <div class="w-full h-full rounded bg-cover bg-center" :style="`background-image: url(${scenicSpot.Picture.PictureUrl1});`" alt="scenicSpot.Picture.PictureDescription1"/>
+          </div>
+          <div class="w-full h-48 rounded bg-main-500 bg-opacity-20 flex-ccc" v-else>
+            <img src="@/assets/breakfast/icon-no-image.svg" alt="沒有圖片">
+            <!-- <div class="w-full h-full rounded bg-main-500 bg-opacity-20" :style="`background-image: url(icon-no-image.svg)`" alt="沒有圖片"/> -->
+          </div>
+          <div class="mt-1 px-1 text-left text-xl font-bold">{{ scenicSpot.Name }}</div>
+          <div class="flex-rlc p-1 pt-0">
+            <img src="@/assets/breakfast/spot16.svg" alt="景點城市">
+            <div>{{ scenicSpot.City }}</div>
+          </div>
+        </div>
+      </div>
+      <Pagination
+        class="w-full mt-12 invisible"
+        :currentPage='scenicSpotListCurrentPage'
+        :totalPage='scenicSpotListTotalPage'
+        :hasPrevPage='scenicSpotListHasPrevPage'
+        :hasNextPage='scenicSpotListHasNextPage'
+        @clickPrev='clickPrev'
+        @clickNext='clickNext'
+        @clickPage='clickPage'
+      />
     </template>
   </div>
 </template>
@@ -38,20 +64,23 @@
 <script>
 import { mapActions, mapGetters } from 'vuex';
 import Dropdown from '@/components/Dropdown.vue';
-import { SearchTypesText } from '@/utils/enums';
+import Pagination from '@/components/Pagination.vue';
+import { Counties } from '@/utils/enums';
 import { log } from '@/utils/message';
 
 export default {
   name: 'SearchScenicSpots',
   components: {
     Dropdown,
+    Pagination,
   },
   data() {
     return {
-      searchTypesText: SearchTypesText,
-      selectedCountyID: 1,
+      counties: Counties,
+      selectedCountyID: Object.keys(Counties)[0],
+
       search: '',
-      perPage: 3,
+      perPage: 20,
     };
   },
   methods: {
@@ -70,9 +99,10 @@ export default {
     },
     _getScenicSpotList(page) {
       this.getScenicSpotList({
+        county: this.selectedCountyID,
+        search: this.search,
         page,
         perPage: this.perPage,
-        search: this.search,
       }).then(() => {}).catch((msg) => {
         log(msg, true, false, false, true);
       });
@@ -98,7 +128,7 @@ export default {
       return (this.scenicSpotList) ? this.scenicSpotList.length : 0;
     },
 
-    ...mapGetters('scenicspot', ['scenicSpotList', 'scenicSpotListCurrentPage']),
+    ...mapGetters('scenicspot', ['scenicSpotList', 'scenicSpotListCurrentPage', 'scenicSpotListTotalPage', 'scenicSpotListHasPrevPage', 'scenicSpotListHasNextPage']),
   },
 };
 </script>

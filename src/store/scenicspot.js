@@ -17,35 +17,43 @@ export default {
   },
   actions: {
     getScenicSpotList(context, payload) {
-      const config = {
-        method: 'get',
-        url: 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$format=JSON&',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          // 'Authorization': `Bearer ${token}`,
-        },
-      };
-      if (payload.perPage) {
-        if (payload.page) {
-          config.url += `$top=${payload.page * payload.perPage}&`;
-          config.url += `$skip=${(payload.page - 1) * payload.perPage}&`;
+      return new Promise((resolve, reject) => {
+        const config = {
+          method: 'get',
+          url: 'https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${token}`,
+          },
+        };
+
+        if (payload.county) {
+          config.url += `/${payload.county}?$format=JSON&`;
         }
         else {
-          config.url += `$top=${context.state.scenicspot_list_current_page * payload.perPage}&`;
-          config.url += `$skip=${(context.state.scenicspot_list_current_page - 1) * payload.perPage}&`;
+          config.url += '?$format=JSON&';
         }
-      }
-      else {
-        config.url += '$top=5&';
-      }
 
-      if (payload.search) {
-        config.url += `$filter=contains(Name,'${payload.search}')&`;
-      }
+        if (payload.perPage) {
+          if (payload.page) {
+            config.url += `$top=${payload.page * payload.perPage}&`;
+            config.url += `$skip=${(payload.page - 1) * payload.perPage}&`;
+          }
+          else {
+            config.url += `$top=${context.state.scenicspot_list_current_page * payload.perPage}&`;
+            config.url += `$skip=${(context.state.scenicspot_list_current_page - 1) * payload.perPage}&`;
+          }
+        }
+        else {
+          config.url += '$top=5&';
+        }
 
-      context.dispatch('startLoading', '取得景點列表中...');
-      return new Promise((resolve, reject) => {
+        if (payload.search) {
+          config.url += `$filter=contains(Name,'${payload.search}')&`;
+        }
+
+        context.dispatch('startLoading', '取得景點列表中...');
         Axios(config).then((response) => {
           console.log('/v2/Tourism/ScenicSpot', response);
           axiosThen(response, () => {
