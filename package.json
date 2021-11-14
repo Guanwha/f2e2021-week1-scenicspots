@@ -10,6 +10,7 @@
   "dependencies": {
     "@tailwindcss/postcss7-compat": "^2.0.2",
     "autoprefixer": "^9",
+    "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.0.2",
@@ -46,12 +47,45 @@
       "parser": "babel-eslint"
     },
     "rules": {
-      "max-len": ["error", { "code": 511 }],
-			"brace-style": ["error", "stroustrup"],
-      "no-plusplus": ["error", { "allowForLoopAfterthoughts": true }],
-      "no-multi-spaces": ["error", { "ignoreEOLComments": true }],
-			"no-trailing-spaces": ["error", { "skipBlankLines": true, "ignoreComments": true }],
-			"no-underscore-dangle": ["error", { "allowAfterThis": true, "allow": ["_attributes"] }]
+      "max-len": [
+        "error",
+        {
+          "code": 511
+        }
+      ],
+      "brace-style": [
+        "error",
+        "stroustrup",
+        { "allowSingleLine": true }
+      ],
+      "no-plusplus": [
+        "error",
+        {
+          "allowForLoopAfterthoughts": true
+        }
+      ],
+      "no-multi-spaces": [
+        "error",
+        {
+          "ignoreEOLComments": true
+        }
+      ],
+      "no-trailing-spaces": [
+        "error",
+        {
+          "skipBlankLines": true,
+          "ignoreComments": true
+        }
+      ],
+      "no-underscore-dangle": [
+        "error",
+        {
+          "allowAfterThis": true,
+          "allow": [
+            "_attributes"
+          ]
+        }
+      ]
     }
   },
   "browserslist": [

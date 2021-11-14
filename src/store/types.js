@@ -5,10 +5,10 @@ const ui = {
 };
 
 /** temp */
-const temp = {
-  TEMP: 'TEMP',
+const scenicspot = {
+  SET_SENICSPOT_LIST: 'SET_SENICSPOT_LIST',
 };
 
 export {
-  ui, temp,
+  ui, scenicspot,
 };
