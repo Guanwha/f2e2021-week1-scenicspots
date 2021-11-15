@@ -25,6 +25,14 @@ const routes = [
       menuItemType: MenuItemTypeEnum.SEARCH_SCENICSPOTS,
     },
   },
+  {
+    path: '/scenicspot/:id',
+    name: 'scenicSpot',
+    component: () => import(/* webpackChunkName: "searchScenicSpots" */ '../views/ScenicSpot.vue'),
+    meta: {
+      menuItemType: MenuItemTypeEnum.SEARCH_SCENICSPOTS,
+    },
+  },
 ];
 
 const router = new VueRouter({

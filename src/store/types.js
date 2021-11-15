@@ -7,6 +7,7 @@ const ui = {
 /** temp */
 const scenicspot = {
   SET_SENICSPOT_LIST: 'SET_SENICSPOT_LIST',
+  SET_CURRENT_SENICSPOT: 'SET_CURRENT_SENICSPOT',
 };
 
 export {

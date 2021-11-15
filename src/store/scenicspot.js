@@ -9,6 +9,7 @@ export default {
   strict: true,        // option 嚴格模式
   namespaced: true,    // option
   state: {
+    scenicspot: null,
     scenicspot_list: [],
     scenicspot_list_current_page: 1,
     scenicspot_list_total_page: 1,
@@ -86,6 +87,9 @@ export default {
         });
       });
     },
+    setCurrentScenicSpot(context, id) {
+      context.commit(types.scenicspot.SET_CURRENT_SENICSPOT, id);
+    },
   },
   mutations: {
     [types.scenicspot.SET_SENICSPOT_LIST](state, payload) {
@@ -95,8 +99,13 @@ export default {
       // state.scenicspot_list_has_prev_page = false,
       // state.scenicspot_list_has_next_page = false,
     },
+    [types.scenicspot.SET_CURRENT_SENICSPOT](state, id) {
+      const idx = state.scenicspot_list.findIndex((scenicspot) => scenicspot.ID === id);
+      state.scenicspot = state.scenicspot_list[idx];
+    },
   },
   getters: {
+    curScenicSpot(state) { return state.scenicspot; },
     scenicSpotList(state) { return state.scenicspot_list; },
     scenicSpotListCurrentPage(state) { return state.scenicspot_list_current_page; },
     scenicSpotListTotalPage(state) { return state.scenicspot_list_total_page; },

@@ -31,7 +31,8 @@
     <template v-else>
       <div class="mt-2 w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div class="col-span-1 rounded-b hover:-translate-y-2 hover:shadow-lg transform transition duration-500 ease-in-out cursor-pointer"
-             v-for="scenicSpot in scenicSpotList" :key="scenicSpot.ID">
+             v-for="scenicSpot in scenicSpotList" :key="scenicSpot.ID"
+             @click="gotoScenicSpotDetail(scenicSpot.ID)">
           <div class="w-full h-48" v-if="scenicSpot.Picture">
             <!-- <img  :src="scenicSpot.Picture.PictureUrl1" alt=""> -->
             <div class="w-full h-full rounded bg-cover bg-center" :style="`background-image: url(${scenicSpot.Picture.PictureUrl1});`" alt="scenicSpot.Picture.PictureDescription1"/>
@@ -84,7 +85,17 @@ export default {
     };
   },
   methods: {
-    // pagination
+    /**
+     * router
+     */
+    gotoScenicSpotDetail(id) {
+      this.setCurrentScenicSpot(id);
+      this.$router.push({ name: 'scenicSpot', params: { id } });   // back to search page
+    },
+
+    /**
+     * pagination
+     */
     clickPrev() {
       this._getScenicSpotList(this.scenicSpotListCurrentPage - 1);
     },
@@ -108,7 +119,7 @@ export default {
       });
     },
 
-    ...mapActions('scenicspot', ['getScenicSpotList']),
+    ...mapActions('scenicspot', ['getScenicSpotList', 'setCurrentScenicSpot']),
   },
   computed: {
     /**
