@@ -1,12 +1,38 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <Header class="z-10" :menu-item-type='menuItemType'/>  <!-- must be above frosted-glass -->
+    <div class="absolute top-20 bottom-0 w-full overflow-y-auto">
+      <router-view/>
+      <div :class="[ (isShowFrostedGlass) ? 'frosted-glass': '' ]"></div>
+      <Footer class="mt-16"/>  <!-- must be above frosted-glass -->
     </div>
-    <router-view/>
   </div>
 </template>
+
+<script>
+import { mapGetters } from 'vuex';
+import Header from '@/components/Header.vue';
+import Footer from '@/components/Footer.vue';
+
+export default {
+  name: 'App',
+  components: {
+    Header,
+    Footer,
+  },
+  data() {
+    return {
+      menuItemType: this.$route.meta.menuItemType,
+    };
+  },
+  updated() {
+    this.menuItemType = this.$route.meta.menuItemType;
+  },
+  computed: {
+    ...mapGetters(['isShowFrostedGlass']),
+  },
+};
+</script>
 
 <style lang="scss">
 #app {
@@ -28,5 +54,14 @@
       color: #42b983;
     }
   }
+}
+
+.frosted-glass {
+  @apply w-full;
+  @apply h-full;
+  @apply fixed;
+  @apply top-0;
+  @apply left-0;
+  backdrop-filter: blur(2px);
 }
 </style>
