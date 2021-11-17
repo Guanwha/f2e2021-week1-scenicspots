@@ -13,6 +13,12 @@
     <!-- title -->
     <div class="mt-8 text-4xl" v-if="curScenicSpot.Name">{{ curScenicSpot.Name }}</div>
     <!-- tags -->
+    <div class="flex-rlc">
+      <div v-for="(scenicSpotClass, idx) in scenicSpotClasses" :key="idx"
+           class="mr-2 rounded-full border border-tag-500 text-tag-500 leading-tight px-4 py-1 select-none">
+        # {{ scenicSpotClass }}
+      </div>
+    </div>
     <!-- description -->
     <div class="mt-8 text-left" v-if="curScenicSpot.DescriptionDetail">
       <div class="font-bold">景點介紹：</div>
@@ -137,6 +143,21 @@ export default {
     },
     hasLatLong() {
       return (this.curScenicSpot && this.curScenicSpot.Position && this.curScenicSpot.Position.PositionLat && this.curScenicSpot.Position.PositionLon);
+    },
+    scenicSpotClasses() {
+      const classes = [];
+      if (this.curScenicSpot) {
+        if (this.curScenicSpot.Class1) {
+          classes.push(this.curScenicSpot.Class1);
+        }
+        if (this.curScenicSpot.Class2) {
+          classes.push(this.curScenicSpot.Class2);
+        }
+        if (this.curScenicSpot.Class3) {
+          classes.push(this.curScenicSpot.Class3);
+        }
+      }
+      return classes;
     },
 
     ...mapGetters('scenicspot', ['curScenicSpot']),
