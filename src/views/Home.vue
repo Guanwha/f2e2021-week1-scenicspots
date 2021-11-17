@@ -1,22 +1,22 @@
 <template>
   <div class="container mx-auto flex-ccc px-2 md:px-0">
     <!-- search area -->
-    <div class="w-full flex-ccc md:flex-rsbc">
-      <div class="flex-ccc md:flex-ccl md:pl-24 py-4 md:py-20">
-        <div class="text-2xl md:text-5xl text-gray-500 leading-normal">探索<span class="underline">台灣之美</span></div>
-        <div class="text-2xl md:text-5xl text-gray-500 leading-normal">讓我們更親近這片土地</div>
+    <div class="w-full grid grid-cols-1 md:grid-cols-2">
+      <div class="col-span-1 flex-ccc py-4 md:py-20">
+        <div class="text-2xl md:text-4xl lg:text-5xl text-gray-500 leading-normal">探索<span class="underline">台灣之美</span></div>
+        <div class="text-2xl md:text-4xl lg:text-5xl text-gray-500 leading-normal">讓我們更親近這片土地</div>
         <div class="pt-2 md:pt-4 flex-rlc">
           <img src="@/assets/breakfast/spot24_Y.svg" alt="">
-          <div class="ml-1 font-bold text-sm md:text-xl text-gray-400">台灣旅遊景點導覽 Taiwan Travel Guide</div>
+          <div class="ml-1 font-bold text-sm md:text-lg lg:text-xl text-gray-400">台灣旅遊景點導覽 Taiwan Travel Guide</div>
         </div>
       </div>
-      <div class="w-full md:w-auto flex-ccc">
-        <Dropdown class="w-full md:w-96"
+      <div class="col-span-1 flex-ccc">
+        <Dropdown class="w-full md:w-80 lg:w-96"
                   classPadding="px-4 py-2 md:py-4"
                   :classBorder="classDDBorder"
                   :classBgTextColor="classDDBgTextColor"
                   v-model.number='selectedSearchTypeID' :types='searchTypesText'/>
-        <div class="w-full md:w-96 mt-2">
+        <div class="w-full md:w-80 lg:w-96 mt-2">
           <input type="text" class="w-full px-4 py-2 md:py-4 border-main rounded focus:outline-none focus:border-main-500" placeholder="您想去哪裡？請輸入關鍵字" v-model="searchText">
           <button type="button" class="w-full mt-2 py-2 md:py-4 border-main rounded btn btn-main focus:outline-none focus:border-main-500 flex-rcc"
                    @click="search()">
