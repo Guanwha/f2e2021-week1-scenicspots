@@ -19,16 +19,61 @@
       <div class="mt-2">{{ curScenicSpot.DescriptionDetail }}</div>
     </div>
     <!-- detail -->
-    <div class="mt-8 w-full h-40 md:h-80 rounded-lg border-main-500 bg-main-500 bg-opacity-20 flex-ccc">Coming Soon...</div>
+    <div class="mt-8 w-full grid grid-cols-2 gap-4">
+      <div class="col-span-2 md:col-span-1 rounded-lg border-main-500 bg-main-500 bg-opacity-10 flex-csbc px-4 py-4 md:py-8">
+        <ul class="w-full grid grid-cols-4 gap-2">
+          <li class="detail-label">開放時間：</li>
+          <li class="detail-content">{{ displayOpenTime }}</li>
+          <li class="detail-label">服務電話：</li>
+          <li class="detail-content">{{ displayPhone }}</li>
+          <li class="detail-label">景點地址：</li>
+          <li class="detail-content">{{ displayAddress }}</li>
+          <li class="detail-label">官方網站：</li>
+          <li class="detail-content">{{ displayWebsiteUrl }}</li>
+          <li class="detail-label">票價資訊：</li>
+          <li class="detail-content">{{ displayTicketInfo }}</li>
+          <li class="detail-label">注意事項：</li>
+          <li class="detail-content">{{ displayRemarks }}</li>
+        </ul>
+      </div>
+      <template v-if="hasLatLong">
+        <div class="col-span-2 md:col-span-1 flex-ctc">
+          <MapLeaflet class="rounded-lg" :lat="curScenicSpot.Position.PositionLat" :long="curScenicSpot.Position.PositionLon"/>
+          <div class="mt-4 w-full text-left font-bold">周邊資訊：</div>
+          <div class="mt-4 w-full grid grid-cols-3 gap-4">
+            <button type="button" class="btn-info md:flex-ccc" @click="comingsoong()">
+              <div class="icon scene"></div>
+              <div class="text">附近景點</div>
+            </button>
+            <button type="button" class="btn-info md:flex-ccc" @click="comingsoong()">
+              <div class="icon event"></div>
+              <div class="text">附近活動</div>
+            </button>
+            <button type="button" class="btn-info md:flex-ccc" @click="comingsoong()">
+              <div class="icon food"></div>
+              <div class="text">附近美食</div>
+            </button>
+          </div>
+        </div>
+      </template>
+      <template v-else>
+        <div class="col-span-2 md:col-span-1 h-40 md:h-80 rounded-lg border-main-500 bg-main-500 bg-opacity-10 flex-ccc">Coming Soon...</div>
+      </template>
+    </div>
     <!-- others -->
   </div>
 </template>
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
+import MapLeaflet from '@/components/MapLeaflet.vue';
+import { log } from '@/utils/message';
 
 export default {
   name: 'ScenicSpot',
+  components: {
+    MapLeaflet,
+  },
   data() {
     return {
       curScenicSpotID: 0,
@@ -50,6 +95,10 @@ export default {
     }
   },
   methods: {
+    comingsoong() {
+      log('敬請期待...', false, false, true);
+    },
+
     ...mapActions('scenicspot', ['setCurrentScenicSpot']),
   },
   computed: {
@@ -68,12 +117,86 @@ export default {
       }
       return breakcrumbs;
     },
+    displayOpenTime() {
+      return (this.curScenicSpot && this.curScenicSpot.OpenTime) ? this.curScenicSpot.OpenTime : '未提供';
+    },
+    displayPhone() {
+      return (this.curScenicSpot && this.curScenicSpot.Phone) ? this.curScenicSpot.Phone : '未提供';
+    },
+    displayAddress() {
+      return (this.curScenicSpot && this.curScenicSpot.Address) ? this.curScenicSpot.Address : '未提供';
+    },
+    displayWebsiteUrl() {
+      return (this.curScenicSpot && this.curScenicSpot.WebsiteUrl) ? this.curScenicSpot.WebsiteUrl : '未提供';
+    },
+    displayTicketInfo() {
+      return (this.curScenicSpot && this.curScenicSpot.TicketInfo) ? this.curScenicSpot.TicketInfo : '未提供';
+    },
+    displayRemarks() {
+      return (this.curScenicSpot && this.curScenicSpot.Remarks) ? this.curScenicSpot.Remarks : '未提供';
+    },
+    hasLatLong() {
+      return (this.curScenicSpot && this.curScenicSpot.Position && this.curScenicSpot.Position.PositionLat && this.curScenicSpot.Position.PositionLon);
+    },
 
     ...mapGetters('scenicspot', ['curScenicSpot']),
   },
 };
 </script>
 
-<style>
-
+<style lang='scss' scoped>
+.detail-label {
+  @apply col-span-1;
+  @apply font-bold;
+  @apply text-right;
+}
+.detail-content {
+  @apply col-span-3;
+  @apply text-left;
+}
+.btn-info {
+  @apply col-span-1;
+  @apply p-4;
+  @apply border;
+  @apply rounded;
+  @apply cursor-pointer;
+  @apply transform;
+  @apply transition-all;
+  @apply duration-300;
+  .icon {
+    @apply w-8;
+    @apply h-8;
+    @apply transform;
+    @apply transition-all;
+    @apply duration-300;
+  }
+  .scene {
+    background-image: url(../assets/breakfast/nearby-scene30.svg);
+  }
+  .event {
+    background-image: url(../assets/breakfast/nearby-event30.svg);
+  }
+  .food {
+    background-image: url(../assets/breakfast/nearby-food30.svg);
+  }
+  .text {
+    @apply text-gray-500;
+    @apply font-bold;
+  }
+  &:hover {
+    @apply border-main-500;
+    .scene {
+      background-image: url(../assets/breakfast/nearby-scene30_hover.svg);
+    }
+    .event {
+      background-image: url(../assets/breakfast/nearby-event30_hover.svg);
+    }
+    .food {
+      background-image: url(../assets/breakfast/nearby-food30_hover.svg);
+    }
+    .text {
+      @apply text-main-500;
+    }
+  }
+}
 </style>
