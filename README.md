@@ -4,7 +4,7 @@
 
 ## Features
 - 根據 TDX API 搜尋景點資訊並顯示相關詳細資料
-- 地圖功能 (Coming soon...)
+- 地圖功能
 - 搜尋活動功能 (Coming soon...)
 - 搜尋餐廳功能 (Coming soon...)
 - 熱門統計資料 (規劃中...)
