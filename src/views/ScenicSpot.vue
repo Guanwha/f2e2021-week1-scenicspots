@@ -31,11 +31,11 @@
           <li class="detail-label">開放時間：</li>
           <li class="detail-content">{{ displayOpenTime }}</li>
           <li class="detail-label">服務電話：</li>
-          <li class="detail-content">{{ displayPhone }}</li>
+          <li class="detail-content" v-html="displayPhone"></li>
           <li class="detail-label">景點地址：</li>
           <li class="detail-content">{{ displayAddress }}</li>
           <li class="detail-label">官方網站：</li>
-          <li class="detail-content">{{ displayWebsiteUrl }}</li>
+          <li class="detail-content" v-html="displayWebsiteUrl"></li>
           <li class="detail-label">票價資訊：</li>
           <li class="detail-content">{{ displayTicketInfo }}</li>
           <li class="detail-label">注意事項：</li>
@@ -127,13 +127,13 @@ export default {
       return (this.curScenicSpot && this.curScenicSpot.OpenTime) ? this.curScenicSpot.OpenTime : '未提供';
     },
     displayPhone() {
-      return (this.curScenicSpot && this.curScenicSpot.Phone) ? this.curScenicSpot.Phone : '未提供';
+      return (this.curScenicSpot && this.curScenicSpot.Phone) ? `<a href="tel:${this.curScenicSpot.Phone}">${this.curScenicSpot.Phone}</a>` : '未提供';
     },
     displayAddress() {
       return (this.curScenicSpot && this.curScenicSpot.Address) ? this.curScenicSpot.Address : '未提供';
     },
     displayWebsiteUrl() {
-      return (this.curScenicSpot && this.curScenicSpot.WebsiteUrl) ? this.curScenicSpot.WebsiteUrl : '未提供';
+      return (this.curScenicSpot && this.curScenicSpot.WebsiteUrl) ? `<a class="truncate block" href="${this.curScenicSpot.WebsiteUrl}" target="_blank" title="${this.curScenicSpot.WebsiteUrl}">${this.curScenicSpot.WebsiteUrl}</a>` : '未提供';
     },
     displayTicketInfo() {
       return (this.curScenicSpot && this.curScenicSpot.TicketInfo) ? this.curScenicSpot.TicketInfo : '未提供';
