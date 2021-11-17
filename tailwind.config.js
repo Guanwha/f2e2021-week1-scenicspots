@@ -30,6 +30,8 @@ module.exports = {
 
       'main-500': '#65895F',
       'main-400': '#7F977B',
+
+      'tag-500': '#BEA363',
     },
     spacing: {
       px: '1px',
