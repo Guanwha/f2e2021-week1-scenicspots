@@ -12,6 +12,11 @@ export const MenuItemTypeEnum = {
 /**
  * search types
  */
+export const SearchTypesEnum = {
+  SCENICSPOT: 1,
+  ACTIVITY: 2,
+  EAT: 3,
+};
 export const SearchTypesText = {
   1: { name: '探索景點' },
   2: { name: '節慶活動' },

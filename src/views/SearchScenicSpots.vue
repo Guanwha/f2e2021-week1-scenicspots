@@ -84,6 +84,9 @@ export default {
       perPage: 20,
     };
   },
+  created() {
+    this.search = this.curScenicSpotSearch;
+  },
   methods: {
     /**
      * router
@@ -139,7 +142,7 @@ export default {
       return (this.scenicSpotList) ? this.scenicSpotList.length : 0;
     },
 
-    ...mapGetters('scenicspot', ['scenicSpotList', 'scenicSpotListCurrentPage', 'scenicSpotListTotalPage', 'scenicSpotListHasPrevPage', 'scenicSpotListHasNextPage']),
+    ...mapGetters('scenicspot', ['curScenicSpotSearch', 'scenicSpotList', 'scenicSpotListCurrentPage', 'scenicSpotListTotalPage', 'scenicSpotListHasPrevPage', 'scenicSpotListHasNextPage']),
   },
 };
 </script>
