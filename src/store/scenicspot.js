@@ -9,6 +9,7 @@ export default {
   strict: true,        // option 嚴格模式
   namespaced: true,    // option
   state: {
+    scenicspot_search: '',
     scenicspot: null,
     scenicspot_list: [],
     scenicspot_list_current_page: 1,
@@ -17,6 +18,9 @@ export default {
     scenicspot_list_has_next_page: false,
   },
   actions: {
+    setScenicSpotSearch(context, search) {
+      context.commit(types.scenicspot.SET_SENICSPOT_SEARCH, search);
+    },
     getScenicSpotList(context, payload) {
       return new Promise((resolve, reject) => {
         const config = {
@@ -92,6 +96,9 @@ export default {
     },
   },
   mutations: {
+    [types.scenicspot.SET_SENICSPOT_SEARCH](state, search) {
+      state.scenicspot_search = search;
+    },
     [types.scenicspot.SET_SENICSPOT_LIST](state, payload) {
       state.scenicspot_list = [...payload.scenicspot_list];
       state.scenicspot_list_current_page = payload.current_page;
@@ -105,6 +112,7 @@ export default {
     },
   },
   getters: {
+    curScenicSpotSearch(state) { return state.scenicspot_search; },
     curScenicSpot(state) { return state.scenicspot; },
     scenicSpotList(state) { return state.scenicspot_list; },
     scenicSpotListCurrentPage(state) { return state.scenicspot_list_current_page; },
